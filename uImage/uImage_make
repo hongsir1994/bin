@@ -1,0 +1,8 @@
+#!/bin/bash 
+#Name:
+#Desc:
+#Usage:
+#Path:
+#Update:
+
+mkimage -A arm -O linux -T kernel -C none -a 0xc0008000 -e 0xc0008000 -n linux-3.2.18 -d zImage uImage

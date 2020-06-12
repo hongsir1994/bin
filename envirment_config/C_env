@@ -1,0 +1,77 @@
+#!/bin/bash 
+#Name: C/C++ env install&conf
+#Desc: env isntall
+#Usage: C_env
+#Path: ~/bin
+#Update: 2020 0405
+
+check() {
+	local temp=$(dpkg -s $name | egrep "Status")
+	local install_ok="Status: install ok installed"
+
+	if [ "$temp" = "$install_ok"  ]
+	then
+		echo "$name was installed"
+	else
+		echo "$name is installing ... ..."
+		sudo apt-get install $name
+	fi
+}
+
+echo "Ubuntu18~19 config ... ..."
+check_vim() {
+	name="vim"
+	check
+}
+check_gcc() {
+	name="gcc"
+	check
+}
+
+check_gcc0() {
+	name="g++"
+	check
+}
+
+check_sqlite3() {
+	name="sqlite3"
+	check
+}
+
+check_subversion() {
+	name="subversion"
+	check
+}
+
+check_git(){
+	name="git"
+	check
+}
+
+check_make(){
+	name="make"
+	check
+}
+
+check_sqlite3_h(){
+	name="libsqlite3-dev"
+	check
+}
+
+check_lib32(){
+	name="lib32z1"
+	check
+}
+
+
+check_vim
+check_gcc
+check_gcc0
+check_sqlite3
+check_subversion
+check_git
+check_make
+check_sqlite3_h
+check_lib32
+
+echo "install for C_env was done"

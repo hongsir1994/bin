@@ -1,0 +1,11 @@
+#!/bin/bash 
+#Name:
+#Desc:
+#Usage:
+#Path:
+#Update:
+
+echo "Ubuntu Version: $(cat /proc/version)"
+echo "Ubuntu bit :$(getconf LONG_BIT)"
+echo "Ubuntu CPU:$(cat /proc/cpuinfo)"
+

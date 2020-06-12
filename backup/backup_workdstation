@@ -1,0 +1,10 @@
+#!/bin/bash 
+#Name:
+#Desc:
+#Usage:
+#Path:
+#Update:
+
+cp -r ~/Desktop/workstation ~/Desktop/backup_workstation
+cd ~/Desktop/backup_workstation 
+tar -czvf $(date +%H_%m_%d).tar.gz  *

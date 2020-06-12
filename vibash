@@ -1,0 +1,18 @@
+#!/bin/bash
+#Name:vibash
+#Desc:用来建立bash脚本
+#Usage:vibash [filename]
+#Path:~/bin
+#Update:2020-2-22
+
+touch $1.sh
+echo "#!/bin/bash " >> $1.sh
+echo "#Name:" >> $1.sh
+echo "#Desc:" >> $1.sh
+echo "#Usage:" >> $1.sh
+echo "#Path:" >> $1.sh
+echo "#Update:" >> $1.sh
+
+vim $1.sh 
+chmod u+x $1.sh
+mv $1.sh $1

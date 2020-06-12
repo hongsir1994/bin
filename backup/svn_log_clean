@@ -1,0 +1,12 @@
+#!/bin/bash 
+#Name:
+#Desc:
+#Usage:
+#Path:
+#Update:
+
+
+for temp in $(cat ~/svn.list)
+do
+	rm ~/Documents/*.log
+done

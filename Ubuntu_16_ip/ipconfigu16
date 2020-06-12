@@ -1,0 +1,21 @@
+#!/bin/bash 
+#Name:
+#Desc:
+#Usage:
+#Path:
+#Update:
+
+dir_inter='/etc/network/interfaces'
+sudo chmod 777 $dir_inter
+sudo rm $dir_inter
+sudo cp interfaces $dir_inter
+
+read -p "config ipaddr:" ip
+read -p "config mask:" mask
+read -p "config broadcast:" bro
+read -p "config gateway:" gate
+read -p "config network:" ip_net
+
+cat interfaces | sed '13s/10.0.119.119/'"$ip"'/' | sed '14s/255.255.0.0/'"$mask"'/' | sed '15s/10.0.0.0/'"$ip_net"'/' | sed '16s/10.0.255.255/'"$bro"'/' | sed '17s/10.0.0.1/'"$gate"'/' > temp
+sudo rm $dir_inter
+sudo mv temp	$dir_inter

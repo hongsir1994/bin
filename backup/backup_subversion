@@ -1,0 +1,30 @@
+#!/bin/bash 
+#Name:
+#Desc:
+#Usage:
+#Path:
+#Update:
+
+
+svn_update(){
+	local file_list=$(ls /home/hongsir1994/svn/)
+
+	for tp in $file_list
+	do
+		cd /home/hongsir1994/svn/$tp
+		svn up
+		cd ../
+		tar -czvf $tp.tar.gz $tp
+		mv $tp.tar.gz  ~/svn_backup_temp
+	done
+
+	cd ~/svn_backup_temp
+	tar -czvf svn.tar.gz *
+	mv svn.tar.gz svn_date
+	mv svn.* svn_date
+	rm -rf *.gz
+}
+
+svn_update
+echo "$(date)" >> ~/svn_backup_temp/svn$(date +%H).log
+mv $(date +%H).log svn_date

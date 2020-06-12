@@ -1,0 +1,8 @@
+#!/bin/bash 
+#Name: gbash
+#Desc: 用来检验bash的脚本的出错误
+#Usage: gbash [filename]
+#Path: ~/bin
+#Update: 2020-2-22
+
+bash -x $1
