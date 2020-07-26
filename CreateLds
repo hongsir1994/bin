@@ -1,0 +1,9 @@
+#!/bin/bash 
+#Name:CreateLds
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu
+#Update:Fri 24 Jul 2020 04:16:55 PM UTC
+ld --verbose | sed '$d' | sed '1,12d' > s.lds
+chmod 775 s.lds 

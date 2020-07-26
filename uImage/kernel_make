@@ -1,9 +1,0 @@
-#!/bin/bash 
-#Name:
-#Desc:
-#Usage:
-#Path:
-#Update:
-export ARCH=arm
-export CROSS_COMPILE=arm-linux-
-make -j8

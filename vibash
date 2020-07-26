@@ -4,15 +4,28 @@
 #Usage:vibash [filename]
 #Path:~/bin
 #Update:2020-2-22
+set -e
+if [ $# -ne 1 ]
+then
+	echo "Usage: vibash [filename]"
+	exit 0
+fi
 
-touch $1.sh
-echo "#!/bin/bash " >> $1.sh
-echo "#Name:" >> $1.sh
-echo "#Desc:" >> $1.sh
-echo "#Usage:" >> $1.sh
-echo "#Path:" >> $1.sh
-echo "#Update:" >> $1.sh
+if [ -e $1 ]
+then
+	echo "$1 is exit"
+	vim $1
+else
+	touch $1.sh
+	echo "#!/bin/bash " >> $1.sh
+	echo "#Name:$1" >> $1.sh
+	echo "#Auther:$(whoami)" >> $1.sh
+	echo "#Desc:" >> $1.sh
+	echo "#Usage:" >> $1.sh
+	echo "#Path:$(pwd)" >> $1.sh
+	echo "#Update:$(date)" >> $1.sh
 
-vim $1.sh 
-chmod u+x $1.sh
-mv $1.sh $1
+	vim $1.sh 
+	chmod u+x $1.sh
+	mv $1.sh $1
+fi

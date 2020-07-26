@@ -1,0 +1,29 @@
+#!/bin/bash
+#Name:vibash
+#Desc:用来建立python脚本
+#Usage:vibash [filename]
+#Path:~/bin
+#Update:2020-2-22
+
+ if [ $# -ne 1 ]
+ then
+ 	echo "Usage: vibash [filename]"
+	exit 0
+ fi
+
+ if [ -e $1 ]
+ then 
+	echo "$1 is exit"
+	vim $1
+ else
+	 touch $1.py
+	 echo "#!/bin/python3.8 " >> $1.py
+	 echo "#Name:$1" >> $1.py
+	 echo "#Auther:$(whoami)" >> $1.py
+	 echo "#Desc:" >> $1.py
+	 echo "#Usage:" >> $1.py
+	 echo "#Path:$(pwd)" >> $1.py
+	 echo "#Update:$(date)" >> $1.py
+	 vim $1.py 
+	 chmod u+x $1.py
+fi

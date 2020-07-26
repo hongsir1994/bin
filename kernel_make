@@ -1,0 +1,10 @@
+#!/bin/bash 
+#Name:
+#Desc:
+#Usage:
+#Path:
+#Update:
+make oldconfig
+export ARCH=arm
+export CROSS_COMPILE=~/arm-2012.09/bin/arm-none-linux-gnueabi-
+make -j4 > debug.log

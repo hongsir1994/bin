@@ -1,0 +1,8 @@
+#!/bin/bash 
+#Name:MysqlServeCheck
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu
+#Update:Sun 26 Jul 2020 05:48:04 AM UTC
+sudo netstat -anop | grep mysql
