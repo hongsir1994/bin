@@ -1,0 +1,17 @@
+#!/bin/bash 
+#Name:adjangoCreate
+#Author:hongyu
+#Desc:
+#Usage:adjangoCreate [projectsname]
+#Path:/home/hongyu/bin
+#Update:Thu 23 Jul 2020 01:55:50 AM UTC
+
+if (( $# != 1 ))
+then
+	echo "Usage:adjangoCreate [projectsname]"
+elif [ ! -d $1 ]
+then
+	set -e
+	django-admin.py startproject $1
+	echo "create $1 successful"
+fi

@@ -1,0 +1,96 @@
+#!/bin/bash 
+#Name:copyprogess
+#Author:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu/bin
+#Update:Wed 22 Jul 2020 09:38:37 AM UTC
+
+draw_bar(){
+	local cur=$1
+	local all=$2
+	let local speed=(cur*100)/all
+	local fonts="#"
+	let local count=speed-1
+
+	[[  $((count%2)) -eq 1 ]]&&let count++
+
+	local str=$(for i in $(seq 1 $((count/2)));do printf "%s" "$fonts";done)
+	printf "\033[?25l\033[37m\033[1m[%-50s] %d%%\033[?25h\033[0m\r" "$str" "$speed";
+	sleep 0.01
+}
+
+Copyfucntion(){
+	cp -r $1 $2 &
+
+	file_all=$(du -s $1 | egrep -o "^\w+")
+	while :
+	do
+
+		file_old=$(du -s $2 | egrep -o "^\w+")
+		draw_bar $file_old $file_all
+
+
+		let tmp=file_all-file_old
+
+		if (( tmp - old == 0 ))
+		then
+			let file_old=file_old+tmp
+			draw_bar $file_old $file_all
+			break
+		fi
+
+		let old=tmp
+
+		if (( tmp == 0  ))
+		then
+			break
+		fi
+
+	done
+	echo
+}
+
+
+RecordArgv(){
+	argv=$*
+	let args=$#-1
+	let i=0
+
+	for record in $argv
+	do
+		let i++
+		if (( i < $args  ))
+		then
+			mv $record $dir
+		elif (( i == $args  ))
+		then
+			echo $record
+		fi
+		
+	done
+}
+
+if (( $# == 0  ))
+then
+	exit 0
+fi
+
+if (( $# == 2 ))
+then 
+	Copyfucntion $1 $2
+else
+	dir=temp
+	if [ -d $dir ]
+	then
+		echo "is exit" > /dev/null
+	else
+		mkdir $dir
+	fi
+	Target=$(RecordArgv $* $#)
+	Copyfucntion $dir $Target
+	cd $dir
+	mv * ../
+	cd ../
+	rm -rf $dir
+fi

@@ -1,0 +1,31 @@
+#!/bin/bash 
+#Name:runservePython
+#Author:hongyu
+#Desc:
+#Usage:runservePython [ipv4] [port]
+#Path:/home/hongyu/bin
+#Update:Thu 23 Jul 2020 02:37:44 AM UTC
+
+GetIPlocal(){
+	local eth0=$(ip a | egrep "2:" | cut -d: -f2 | sed s/" "//)
+	local ipaddr=$(ip a | egrep "$eth0$" | cut -d" " -f6|cut -d"/" -f1)
+	echo $ipaddr
+}
+
+RunServeDjango(){
+ 	python3 manage.py runserver	$(GetIPlocal):8080 &
+ }
+
+ServeDjangoConfig(){
+ 	python3 manage.py runserver	$1:$2 &
+ }
+
+if (( $# == 0 ))
+then
+	RunServeDjango
+elif (( $# == 2  ))
+then
+	ServeDjangoConfig $1 $2
+else
+	echo "Useage: runservePython [IPV4] [PORT]"
+fi
