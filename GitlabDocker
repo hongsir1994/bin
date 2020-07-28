@@ -1,0 +1,11 @@
+#!/bin/bash 
+#Name:GitlabDocker
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu
+#Update:Tue 28 Jul 2020 12:35:47 PM UTC
+
+sudo mkdir -p /mnt/gitlab/etc
+sudo mkdir -p /mnt/gitlab/log
+sudo mkdir -p /mnt/gitlab/data
