@@ -1,0 +1,12 @@
+#!/bin/bash 
+#Name:GitAuthor
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu/bin
+#Update:Tue 28 Jul 2020 02:05:51 AM UTC
+
+read -p "please input Author Name:" Name
+git config user.name $Name
+read -p "please input Author Email:" Email
+git config user.email $Email
