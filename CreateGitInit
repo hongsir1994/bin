@@ -1,0 +1,15 @@
+#!/bin/bash 
+#Name:CreateGitInit
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu/bin
+#Update:Wed 29 Jul 2020 05:40:09 AM UTC
+mkdir $1
+cd $1
+git init
+touch README.md
+git add README.md
+git commit -m "first commit"
+git remote add origin $2
+git push -u origin master
