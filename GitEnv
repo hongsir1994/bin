@@ -1,0 +1,11 @@
+#!/bin/bash 
+#Name:GitEnv
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu/bin
+#Update:Mon 27 Jul 2020 02:38:36 PM UTC
+
+echo "export GIT_EDITOR=vim" >> .bashrc 
+echo "export GIT_AUTHOR_NAME=hongsir1994"
+echo "export GIT_AUTHOR_EMAIL=hongsir1994@qq.com"

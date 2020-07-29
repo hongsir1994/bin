@@ -1,0 +1,17 @@
+#!/bin/bash 
+#Name:dockerRunGitlab
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu
+#Update:Tue 28 Jul 2020 12:37:08 PM UTC
+docker run \
+	--detach \
+	--publish 8443:443 \
+	--publish 8090:80 \
+	--name gitlab \
+	--restart unless-stopped \
+	-v /mnt/gitlab/etc:/etc/gitlab \
+	-v /mnt/gitlab/log:/var/log/gitlab \
+	-v /mnt/gitlab/data:/var/opt/gitlab \
+	gitlab/gitlab-ce

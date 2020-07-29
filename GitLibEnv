@@ -1,0 +1,14 @@
+#!/bin/bash 
+#Name:GitLibEnv
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu
+#Update:Mon 27 Jul 2020 12:19:29 PM UTC
+
+temp=ca-certificates curl openssh-server postfix
+
+for tr in $temp
+do
+	sudo apt install $tr
+done
