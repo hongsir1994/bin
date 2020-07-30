@@ -5,3 +5,5 @@
 #Usage:
 #Path:/home/hongyu/bin
 #Update:Mon 27 Jul 2020 09:55:44 AM UTC
+
+ps -aux | egrep "$1"
