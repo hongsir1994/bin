@@ -10,21 +10,8 @@
 #Usage: env_config
 #Path: 	~/bin
 #Update: 20200404
-check() {
-	dpkg-query -s $name | egrep -o "$name" >> temp.log
-	for tmp1 in  $(cat temp.log)
-	do
-		if [ $tmp1 = $name ]
-		then
-			echo "$name is OK"
-			break
-		else
-			echo "$name install ... ... ..."
-			sudo apt-get install $name
-		fi
-	done
-	rm temp.log
-}
+
+sudo apt-get install net-tools
 
 echo "Ubuntu18~Ubuntu19 config ... ..."
 read -p "do you want to change ip static (Y/n) : " ack
@@ -45,7 +32,9 @@ case $ack in
 
 		net_plan=$(ls /etc/netplan)
 		back_up="50-cloud-init.backup"
-		echo "example : 192.168.1.3/24"
+		echo "ip addr : 192.168.1.3"
+		echo "ip mask : 24(255.255.255.0)"
+		echo "ip gateway4: 192.168.1.1"
 		read -p "please input ip :" ip
 		read -p "please input mask:" mask
 		read -p "please input gateway4:" gateway

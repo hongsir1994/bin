@@ -31,6 +31,7 @@ check_gcc() {
 check_gcc0() {
 	name="g++"
 	check
+	name="libboost-dev"
 }
 
 check_sqlite3() {

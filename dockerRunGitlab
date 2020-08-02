@@ -8,7 +8,7 @@
 docker run \
 	--detach \
 	--publish 8443:443 \
-	--publish 8090:80 \
+	--publish 8080:80 \
 	--name gitlab \
 	--restart unless-stopped \
 	-v /mnt/gitlab/etc:/etc/gitlab \
