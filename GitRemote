@@ -1,0 +1,15 @@
+#!/bin/bash 
+#Name:GitRemote
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu/bin
+#Update:Thu 30 Jul 2020 02:47:40 AM UTC
+
+if (( $# == 0  ))
+then
+	echo "Usage:GitRemote [url]"
+else
+	git remove rm origin
+	git remote add origin $1
+fi
