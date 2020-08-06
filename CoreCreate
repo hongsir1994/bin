@@ -1,0 +1,14 @@
+#!/bin/bash 
+#Name:CoreCreate
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu/bin
+#Update:Thu 30 Jul 2020 03:12:51 AM UTC
+
+temp=$(ulimit -c)
+
+if [[ "$temp" == "0" ]]
+then 
+	ulimit -c unlimited 
+fi

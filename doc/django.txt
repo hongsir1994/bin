@@ -1,0 +1,34 @@
+HelloWorld: 项目的容器。
+manage.py: 一个实用的命令行工具，可让你以各种方式与该 Django 项目进行交互。
+HelloWorld/__init__.py: 一个空文件，告诉 Python 该目录是一个 Python 包。
+HelloWorld/asgi.py: 一个 ASGI 兼容的 Web 服务器的入口，以便运行你的项目。
+HelloWorld/settings.py: 该 Django 项目的设置/配置。
+HelloWorld/urls.py: 该 Django 项目的 URL 声明; 一份由 Django 驱动的网站"目录"。
+HelloWorld/wsgi.py: 一个 WSGI 兼容的 Web 服务器的入口，以便运行你的项目。
+
+如果在服务器启动之后显示 ip和端口的显示出现invalid，就在settings中修改httpHost=["*"]
+所使用的常规命令：
+	django-admin.py startproject 【filename】 //创建的工程目录 也是作为基本的工程目录开始使用
+
+新建APP : python manage.py startapp blog
+
+启动：python manage.py runserver 8080
+
+同步或者更改生成 数据库：
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+清空数据库： python manage.py flush
+
+创建管理员： python manage.py createsuperuser
+
+修改用户密码： python manage.py changepassword username
+
+Django项目环境终端： python manage.py shell
+
+注意事项：
+	记得修改在settings.py，才能启动相应的web服务
+	例如：
+	ALLOWHTTP=["*"]
