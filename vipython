@@ -11,13 +11,13 @@
 	exit 0
  fi
 
- if [ -e $1 ]
+ if [ -f $1 ]
  then 
 	echo "$1 is exit"
 	vim $1
  else
 	 touch $1
-	 echo "#!/usr/bin/env python " >> $1
+	 echo "#!/usr/bin/env python3 " >> $1
 	 echo "#Name:$1" >> $1
 	 echo "#Auther:$(whoami)" >> $1
 	 echo "#Desc:" >> $1
