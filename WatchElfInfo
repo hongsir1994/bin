@@ -1,0 +1,9 @@
+#!/bin/bash 
+#Name:WatchElfInfo
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu/bin
+#Update:Sun Aug 16 01:53:43 UTC 2020
+
+readelf -h $1

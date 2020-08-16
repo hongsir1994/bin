@@ -6,4 +6,9 @@
 #Path:/home/hongyu/bin
 #Update:Mon 27 Jul 2020 09:55:44 AM UTC
 
+if (( $# == 0 ))
+then
+	echo "Usage:FindThread [threadName]"
+	exit 0
+fi
 ps -aux | egrep "$1"
