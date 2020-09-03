@@ -1,0 +1,8 @@
+#!/bin/bash 
+#Name:Findfunc
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu/WorkEnv/New5GruProjects/adi9026-jesdonly
+#Update:Wed Sep  2 16:16:35 CST 2020
+find $(pwd) -type f | xargs grep "$1"

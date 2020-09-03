@@ -1,0 +1,9 @@
+#!/bin/bash 
+#Name:Tx5GSoft
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu/WorkEnv/New5GruProjects/adi9026-jesdonly
+#Update:Tue Sep  1 13:35:19 CST 2020
+rm -rf ~/.ssh
+scp $1 root@10.0.0.161:/mnt/flash/ 
