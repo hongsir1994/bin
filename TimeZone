@@ -1,0 +1,8 @@
+#!/bin/bash 
+#Name:TimeZone
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu
+#Update:Tue 08 Sep 2020 08:40:19 AM CST
+tzselect

@@ -1,0 +1,22 @@
+#!/bin/bash 
+#Name:ManCommand
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu
+#Update:Tue 08 Sep 2020 08:47:19 AM CST
+set -e
+if (( $# != 1 ))
+then
+	echo "Useage:"
+	echo "ManCommand [Command]"
+else
+	for tmp in $(ls /usr/bin/bin)
+	do
+		if [ "$tmp" = "$1" ]
+		then
+			cat /usr/bin/bin/$1
+			break
+		fi
+	done
+fi

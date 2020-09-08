@@ -1,0 +1,8 @@
+#!/bin/bash 
+#Name:KernelStack
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu/bin
+#Update:Thu 27 Aug 2020 04:03:02 AM UTC
+sudo crash -s /usr/lib/debug/boot/vmlinux-5.4.0-42-generic

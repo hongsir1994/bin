@@ -1,0 +1,9 @@
+#!/bin/bash 
+#Name:GrepLddGnuCC
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu/bin
+#Update:Wed 12 Aug 2020 02:30:33 AM UTC
+
+ldd myprog
