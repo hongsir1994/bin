@@ -1,0 +1,12 @@
+#!/bin/bash 
+#Name:NfsMount
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu
+#Update:Wed 09 Sep 2020 08:46:13 PM CST
+if (( ! $(ls /home/hongyu/Objects | wc -l) ))
+then
+	sudo mount -t nfs 10.0.119.179:/home/hongyu/Objects /home/hongyu/Objects	
+fi
+
