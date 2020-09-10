@@ -1,0 +1,73 @@
+#!/bin/bash 
+#Name:Axi
+#Auther:hongyu
+#Desc: Axi总线设备配置脚本
+#Usage: 详见Useage
+#Path: any path
+#Update:Fri 21 Aug 2020 02:22:45 PM UTC
+#仅仅限于总线接到Cpu上，可以在dev/mem直接操作物理内存的设备
+
+set -e
+ConfigFileName="axiconfig.ini"
+Config(){
+	if [ -f $ConfigFileName  ]
+	then
+		for line in $(cat $ConfigFileName)
+		do
+			if [ "${line:0:1}" == "#" ] || [ "${line:0:1}" == "Id" ]
+			then
+				continue
+			fi
+
+			reg=$(echo $line | cut -d',' -f1)
+			data=$(echo $line | cut -d',' -f2)
+
+			echo "$reg = $data"
+			devmem $reg 32 $data #向此物理内存写入，数值
+		done
+	else
+		echo "axiconfig.ini is not exit,please check"
+	fi
+}
+
+Check(){
+	if [ -f $ConfigFileName  ]
+	then
+		for line in $(cat $ConfigFileName)
+		do
+			if [ "${line:0:1}" == "#" ] || [ "${line:0:1}" == "Id" ]
+			then
+				continue
+			fi
+
+			reg=$(echo $line | cut -d',' -f1)
+
+			echo "$reg"
+			devmem $reg #读取相应的物理地址的信息
+		done
+	else
+		echo "axiconfig.ini is not exit,please check"
+	fi
+}
+
+case $1 in
+	"read") 
+		devmem $2 ;; 
+	"write")
+		devmem $2 32 $3 ;; #限定使用32位的读写方式
+	"cofig")
+		Config ;; #config
+	"check")
+		Check ;; #check
+	"all")
+		Config
+		Check ;; #config && check
+	*)
+		echo "Usage:"
+		echo "$0 config(init Config AxiConfig.txt)"
+		echo "$0 config(init Config AxiConfig.txt)"
+		echo "$0 check (read all the config)"
+		echo "$0 read [addr]"
+		echo "$0 all (config && check)"
+		echo "$0 write [addr] [val]" ;;
+esac
