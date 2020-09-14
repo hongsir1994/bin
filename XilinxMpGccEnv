@@ -1,0 +1,51 @@
+#!/bin/bash 
+#Name:Xilinx-GccEnv
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu
+#Update:Mon Sep 14 11:08:27 CST 2020
+
+set -e
+
+if [ ! -d /home/petalinux ]
+then
+	echo "#建立peatalinux用户"
+	echo "#将zMP-xlnx-sdk，权限设置为777"
+	echo "建立用户"
+	line=$(sudo cat /etc/sudoers | grep -n "root" | grep "ALL"|cut -d':' -f1)
+	echo "$line"
+	sudo useradd -m petalinux
+	sudo passwd
+	sudo usermod -s /bin/bash petalinux
+
+	echo "将用户配置管理员权限"
+	echo "#在/etc/sudoers"
+	echo "#添加 petalinux ALL=(ALL:ALL) ALL"
+	sudo sed -i ''$line''a'petalinux ALL=(ALL:ALL) ALL' /etc/sudoers
+	sudo cat /etc/sudoers | grep -n "petalinux"
+fi
+
+if [ -d /home/petalinux/zMP-xlnx-sdk ]
+then
+	echo "将zMP-xlnx-sdk所有的可执行文件权限修改为777"
+	sudo chmod 777 /home/petalinux/* -R
+	cd /home/petalinux/
+	echo "修改后umask: $(umask)"
+
+	echo "#使用编译环境，在当前用户目录下运行"
+	read -p "please input your work path:" path
+	echo $path
+	sudo cp /home/petalinux/zMP-xlnx-sdk/environment-setup-aarch64-xilinx-linux $path
+
+	echo "#运行这句话，就可以正常运行"
+	echo "source environment-setup-aarch64-xilinx-linux" 
+	source $path/environment-setup-aarch64-xilinx-linux
+	#验证是否成功
+	echo "$CC -v" 
+	echo "#查看是否有编译器版本号的打印"
+	$CC -v
+else
+	echo "#将zMP-xlnx-sdk，复制到/home/petalinux下"
+	echo "从Windows 上将文件 导入到 /home/petalinxu下"
+fi
