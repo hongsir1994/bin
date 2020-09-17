@@ -51,7 +51,7 @@ runzynqmp(){
 	case $Ack in 
 		Y|y)
 			set -e
-			kill -9 $(ps -a | grep "zynqmp.d" | sed '/grep/d' | cut -d' ' -f2)	
+			kill -9 $(ps -a | grep "*.d" | sed '/grep/d' | cut -d' ' -f2)	
 			echo "----- App Stop -----" ;;
 		*)
 			;;

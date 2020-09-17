@@ -1,0 +1,112 @@
+#!/bin/bash 
+#Name:Axi
+#Auther:hongyu
+#Desc: Axi总线设备配置脚本
+#Usage: 详见Useage
+#Path: any path
+#Update:Fri 21 Aug 2020 02:22:45 PM UTC
+#仅仅限于总线接到Cpu上，可以在dev/mem直接操作物理内存的设备
+
+set -e
+ConfigFileName="/mnt/flash/config/axiconfig.csv"
+
+Config(){
+	if [ -f $ConfigFileName  ]
+	then
+		for line in $(cat $ConfigFileName)
+		do
+			if [ "${line:0:1}" == "#" ] || [ "${line:0:1}" == "Id" ]
+			then
+				continue
+			fi
+
+			reg=$(echo $line | cut -d',' -f1)
+			data=$(echo $line | cut -d',' -f2)
+
+			echo "devmem write $reg = $data"
+			devmem $reg 32 $data #向此物理内存写入，数值
+		done
+	else
+		echo "axiconfig.csv 不存在,请检查/mnt/flash/config中是否有axiconfig.csv"
+	fi
+}
+
+Check(){
+	if [ -f $ConfigFileName  ]
+	then
+		for line in $(cat $ConfigFileName)
+		do
+			if [ "${line:0:1}" == "#" ] || [ "${line:0:1}" == "Id" ]
+			then
+				continue
+			fi
+
+			reg=$(echo $line | cut -d',' -f1)
+
+			echo "$reg"
+			devmem $reg #读取相应的物理地址的信息
+		done
+	else
+		echo "axiconfig.txt is not exit,please check"
+	fi
+}
+
+fpga(){
+	FpgaAddr=0xa0020000
+	let offset=4*$2+$FpgaAddr
+
+	case $1 in
+		"fread")
+			echo " --- fpga read ---"
+			devmem $offset ;; 
+		"fwrite")
+			echo " --- fpga write ---"
+			echo "devmem write:$2 = $3 "
+			devmem $offset 32 $3 ;; #限定使用32位的读写方式
+	esac
+}
+
+loadAxiConfig(){
+	echo " --- --- load the AXI Config --- ---  "
+	Config
+}
+
+#######################################################################################################
+
+if [ ! -f /usr/bin/druaxi ]
+then 
+	cp druaxi /usr/bin
+	loadAxiConfig
+	exit 0
+fi
+
+case $1 in
+	"read") 
+		devmem $2 ;; 
+	"write")
+		devmem $2 32 $3 ;; #限定使用32位的读写方式
+	"config")
+		Config ;; #config
+	"check")
+		Check ;; #check
+	"all")
+		Config
+		Check ;; #config && check
+	"fread")
+		fpga "fread" $2 ;;
+	"fwrite")
+		fpga "fwrite" $2 $3 ;;
+	*)
+		echo "Usage:"
+		echo "druaxi config !<-- init Config AxiConfig.csv -->"
+		echo "druaxi check 	!<-- read all the config -->"
+		echo "druaxi read [addr]"
+		echo "druaxi all !<-- AXI config && check -->"
+		echo "druaxi write [addr] [val]"
+		echo
+		echo "--- --- --- 功能拓展 --- --- --- --- "
+		echo
+		echo "--- --- --- FPGA读写 --- --- --- ---"
+		echo "druaxi fread [addr] !<-- fpga read value -->"
+		echo "druaxi fwrite [addr] [value] !<-- fpga write addr value -->" ;;
+esac

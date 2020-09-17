@@ -1,0 +1,25 @@
+#!/bin/bash 
+#Name:Axi
+#Auther:hongyu
+#Desc: Fpga 读写总线设备配置脚本
+#Usage: 详见Useage
+#Path: any path
+#Update:Fri 21 Aug 2020 02:22:45 PM UTC
+#仅仅限于总线接到Cpu上，可以在dev/mem直接操作物理内存的设备
+
+set -e
+FpgaAddr=0xa0020000
+let offset=4*$2+$FpgaAddr
+
+case $1 in
+	"fread")
+		echo " --- fpga read ---"
+		devmem $offset ;; 
+	"fwrite")
+		echo " --- fpga write ---"
+		devmem $offset 32 $3 ;; #限定使用32位的读写方式
+	*)
+		echo "Usage:"
+		echo "$0 read [offset]"
+		echo "$0 write [offset] [val]" ;;
+esac
