@@ -1,0 +1,26 @@
+#!/bin/bash 
+#Name:monitor
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu
+#Update:Mon Oct 12 10:30:37 CST 2020
+
+if [ ! -e /usr/sbin/tcpdump ]
+then
+	echo "Can't find tcpdump binary file"
+fi
+
+case $# in
+	2)
+	 case $2 in
+	 "arp")
+	  tcpdump -i $1 -nnX "arp" ;;
+	"icmp")
+	  tcpdump -i $1 -nnX "icmp" ;;
+	 esac
+	  ;;
+	*) 
+	  echo "Useage:" 
+	  echo "monitor [eth name] [protocol]";;
+esac
