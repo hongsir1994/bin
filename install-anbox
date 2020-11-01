@@ -1,0 +1,12 @@
+#!/bin/bash 
+#Name:install-anbox
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu
+#Update:2020年 10月 30日 星期五 10:31:49 CST
+sudo add-apt-repository ppa:morphis/anbox-support
+sudo apt install -y anbox-modules-dkms
+sudo modprobe ashmem_linux
+sudo modprobe binder_linux
+sudo snap install --devmode --beta anbox

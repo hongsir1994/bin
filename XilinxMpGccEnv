@@ -8,16 +8,16 @@
 
 set -e
 
-if [ ! -d /home/petalinux ]
+if [ ! -d /home/peta ]
 then
 	echo "#建立peatalinux用户"
 	echo "#将zMP-xlnx-sdk，权限设置为777"
 	echo "建立用户"
 	line=$(sudo cat /etc/sudoers | grep -n "root" | grep "ALL"|cut -d':' -f1)
 	echo "$line"
-	sudo useradd -m petalinux
+	sudo useradd -m peta
 	sudo passwd
-	sudo usermod -s /bin/bash petalinux
+	sudo usermod -s /bin/bash peta
 
 	echo "将用户配置管理员权限"
 	echo "#在/etc/sudoers"

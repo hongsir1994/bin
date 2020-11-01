@@ -1,0 +1,14 @@
+#!/bin/bash 
+#Name:py-switch
+#Auther:hongyu
+#Desc:
+#Usage:
+#Path:/home/hongyu
+#Update:2020年 11月 01日 星期日 19:58:03 CST
+
+case $1 in
+	upgrade)
+		sudo pip3 install --upgrade pip ;;
+	install)
+		sudo apt-get install python3-pip ;;
+esac
